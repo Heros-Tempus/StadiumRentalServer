@@ -1,0 +1,105 @@
+﻿<Window x:Class="StadiumRentalServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StadiumRentalServer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Initialized="Window_Initialized">
+    <Grid Background="#FF303030">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="List_Participants_Left" Grid.RowSpan="7" Background="#FF515151" Foreground="White" MouseDoubleClick="List_Participants_Left_MouseDoubleClick"/>
+        <ListBox x:Name="List_Participants_Right" Grid.Column="4" Grid.RowSpan="7" Background="#FF515151" Foreground="White" MouseDoubleClick="List_Participants_Right_MouseDoubleClick"/>
+        <GroupBox Grid.Column="1" Header="Slot 1" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Left_Slot1_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot1_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Slot 2" Grid.Row="1" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Left_Slot2_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot2_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Slot 3" Grid.Row="2" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Left_Slot3_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot3_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Slot 4" Grid.Row="3" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Left_Slot4_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot4_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Slot 5" Grid.Row="4" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Left_Slot5_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot5_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Slot 6" Grid.Row="5" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Left_Slot6_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot6_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <Button x:Name="Pull_Input" Grid.Column="2" Content="Pull Input" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Pull_Input_Click"/>
+        <GroupBox Grid.Column="3" Header="Slot 1" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Right_Slot1_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot1_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="3" Header="Slot 2" Grid.Row="1" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Right_Slot2_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot2_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="3" Header="Slot 3" Grid.Row="2" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Right_Slot3_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot3_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="3" Header="Slot 4" Grid.Row="3" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Right_Slot4_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot4_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="3" Header="Slot 5" Grid.Row="4" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Right_Slot5_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot5_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Grid.Column="3" Header="Slot 6" Grid.Row="5" Foreground="White">
+            <StackPanel>
+                <TextBlock x:Name="Right_Slot6_Mon" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot6_Placement" TextWrapping="Wrap"/>
+            </StackPanel>
+        </GroupBox>
+        <TextBlock x:Name="Left_Input" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock x:Name="Right_Input" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="White"/>
+        <Button x:Name="Consume_Input" Grid.Column="2" Content="Consume Input" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Click="Consume_Input_Click"/>
+        <Button x:Name="Reload_Parties" Grid.Column="2" Content="Reload Parties" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Click="Reload_Parties_Click"/>
+    </Grid>
+</Window>
