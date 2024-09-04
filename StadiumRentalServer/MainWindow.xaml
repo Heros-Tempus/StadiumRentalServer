@@ -14,6 +14,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -27,77 +28,77 @@
         <GroupBox Grid.Column="1" Header="Slot 1" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Left_Slot1_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Left_Slot1_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot1_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Slot 2" Grid.Row="1" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Left_Slot2_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Left_Slot2_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot2_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Slot 3" Grid.Row="2" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Left_Slot3_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Left_Slot3_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot3_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Slot 4" Grid.Row="3" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Left_Slot4_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Left_Slot4_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot4_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Slot 5" Grid.Row="4" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Left_Slot5_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Left_Slot5_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot5_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="1" Header="Slot 6" Grid.Row="5" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Left_Slot6_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Left_Slot6_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Left_Slot6_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <Button x:Name="Pull_Input" Grid.Column="2" Content="Pull Input" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Pull_Input_Click"/>
         <GroupBox Grid.Column="3" Header="Slot 1" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Right_Slot1_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Right_Slot1_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot1_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="3" Header="Slot 2" Grid.Row="1" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Right_Slot2_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Right_Slot2_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot2_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="3" Header="Slot 3" Grid.Row="2" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Right_Slot3_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Right_Slot3_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot3_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="3" Header="Slot 4" Grid.Row="3" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Right_Slot4_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Right_Slot4_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot4_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="3" Header="Slot 5" Grid.Row="4" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Right_Slot5_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Right_Slot5_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot5_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Grid.Column="3" Header="Slot 6" Grid.Row="5" Foreground="White">
             <StackPanel>
                 <TextBlock x:Name="Right_Slot6_Mon" TextWrapping="Wrap"/>
-                <TextBlock x:Name="Right_Slot6_Placement" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Right_Slot6_Moves" TextWrapping="Wrap"/>
             </StackPanel>
         </GroupBox>
-        <TextBlock x:Name="Left_Input" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="White"/>
+        <TextBlock x:Name="Left_Input" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Foreground="White" TextWrapping="Wrap"/>
         <TextBlock x:Name="Right_Input" Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="White"/>
         <Button x:Name="Consume_Input" Grid.Column="2" Content="Consume Input" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Click="Consume_Input_Click"/>
         <Button x:Name="Reload_Parties" Grid.Column="2" Content="Reload Parties" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center" Click="Reload_Parties_Click"/>

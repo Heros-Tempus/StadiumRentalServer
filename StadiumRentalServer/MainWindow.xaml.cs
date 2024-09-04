@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using MongoDB.Bson;
+using System.Collections.Generic;
 
 namespace StadiumRentalServer
 {
@@ -132,7 +133,7 @@ namespace StadiumRentalServer
                     var battleset = p.GetValue("Battle Set") as BsonArray;
                     var first = battleset[0].ToBsonDocument().ToDictionary().Values.ToList()[0] as string;
                     var second = battleset[1].ToBsonDocument().ToDictionary().Values.ToList()[0] as string;
-                    var third = battleset[1].ToBsonDocument().ToDictionary().Values.ToList()[0] as string;
+                    var third = battleset[2].ToBsonDocument().ToDictionary().Values.ToList()[0] as string;
                     var completeParty = new Party(name, slot1, slot2, slot3, slot4, slot5, slot6, new List<string>([first, second, third]));
                     Participants.Add(completeParty);
                 }
@@ -161,237 +162,233 @@ namespace StadiumRentalServer
             var selection = x.SelectedItem as Party;
             if (selection != null)
             {
-                Left_Slot1_Mon.Text = selection.Slot_1.Species;
-                Left_Slot2_Mon.Text = selection.Slot_2.Species;
-                Left_Slot3_Mon.Text = selection.Slot_3.Species;
-                Left_Slot4_Mon.Text = selection.Slot_4.Species;
-                Left_Slot5_Mon.Text = selection.Slot_5.Species;
-                Left_Slot6_Mon.Text = selection.Slot_6.Species;
+                Left_Input.Text = selection.Name + " - ";
+                Left_Slot1_Mon.Text = Set_Pronouns(selection.Slot_1);
+                Left_Slot1_Moves.Text = string.Join(", ", selection.Slot_1.Moves.Select(kv => kv.Value).ToArray());
 
+                Left_Slot2_Mon.Text = Set_Pronouns(selection.Slot_2);
+                Left_Slot2_Moves.Text = string.Join(", ", selection.Slot_2.Moves.Select(kv => kv.Value).ToArray());
+
+                Left_Slot3_Mon.Text = Set_Pronouns(selection.Slot_3);
+                Left_Slot3_Moves.Text = string.Join(", ", selection.Slot_3.Moves.Select(kv => kv.Value).ToArray());
+
+                Left_Slot4_Mon.Text = Set_Pronouns(selection.Slot_4);
+                Left_Slot4_Moves.Text = string.Join(", ", selection.Slot_4.Moves.Select(kv => kv.Value).ToArray());
+
+                Left_Slot5_Mon.Text = Set_Pronouns(selection.Slot_5);
+                Left_Slot5_Moves.Text = string.Join(", ", selection.Slot_5.Moves.Select(kv => kv.Value).ToArray());
+
+                Left_Slot6_Mon.Text = Set_Pronouns(selection.Slot_6);
+                Left_Slot6_Moves.Text = string.Join(", ", selection.Slot_6.Moves.Select(kv => kv.Value).ToArray());
+
+                string[] a = ["B", "C-Left", "C-Up", "A", "C-Down", "C-Right"];
+                string Left_Order = String.Empty;
+                int i = 0;
                 if (selection.Battle_Set.Count == 3)
-                {
-                    if (Left_Slot1_Mon.Text == selection.Battle_Set[0])
+                    foreach(var m in selection.Battle_Set)
                     {
-                        Left_Slot1_Placement.Text = "First";
-                    }
-                    else if (Left_Slot1_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Left_Slot1_Placement.Text = "Second";
-                    }
-                    else if (Left_Slot1_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Left_Slot1_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Left_Slot1_Placement.Text = "Not Battling";
-                    }
+                        if (Left_Slot1_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Left_Order = "1st: " + a[0];
+                        }
+                        else if (Left_Slot1_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Left_Order = Left_Order + " 2nd: " + a[0];
+                        }
+                        else if (Left_Slot1_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Left_Order = Left_Order + " 3rd: " + a[0];
+                        }
 
-                    if (Left_Slot2_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Left_Slot2_Placement.Text = "First";
-                    }
-                    else if (Left_Slot2_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Left_Slot2_Placement.Text = "Second";
-                    }
-                    else if (Left_Slot2_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Left_Slot2_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Left_Slot2_Placement.Text = "Not Battling";
-                    }
+                        if (Left_Slot2_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Left_Order = "1st: " + a[1];
+                        }
+                        else if (Left_Slot2_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Left_Order = Left_Order + " 2nd: " + a[1];
+                        }
+                        else if (Left_Slot2_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Left_Order = Left_Order + " 3rd: " + a[1];
+                        }
 
-                    if (Left_Slot3_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Left_Slot3_Placement.Text = "First";
-                    }
-                    else if (Left_Slot3_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Left_Slot3_Placement.Text = "Second";
-                    }
-                    else if (Left_Slot3_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Left_Slot3_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Left_Slot3_Placement.Text = "Not Battling";
-                    }
+                        if (Left_Slot3_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Left_Order = "1st: " + a[2];
+                        }
+                        else if (Left_Slot3_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Left_Order = Left_Order + " 2nd: " + a[2];
+                        }
+                        else if (Left_Slot3_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Left_Order = Left_Order + " 3rd: " + a[2];
+                        }
 
-                    if (Left_Slot4_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Left_Slot4_Placement.Text = "First";
-                    }
-                    else if (Left_Slot4_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Left_Slot4_Placement.Text = "Second";
-                    }
-                    else if (Left_Slot4_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Left_Slot4_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Left_Slot4_Placement.Text = "Not Battling";
-                    }
+                        if (Left_Slot4_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Left_Order = "1st: " + a[3];
+                        }
+                        else if (Left_Slot4_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Left_Order = Left_Order + " 2nd: " + a[3];
+                        }
+                        else if (Left_Slot4_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Left_Order = Left_Order + " 3rd: " + a[3];
+                        }
 
-                    if (Left_Slot5_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Left_Slot5_Placement.Text = "First";
-                    }
-                    else if (Left_Slot5_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Left_Slot5_Placement.Text = "Second";
-                    }
-                    else if (Left_Slot5_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Left_Slot5_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Left_Slot5_Placement.Text = "Not Battling";
-                    }
+                        if (Left_Slot5_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Left_Order = "1st: " + a[4];
+                        }
+                        else if (Left_Slot5_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Left_Order = Left_Order + " 2nd: " + a[4];
+                        }
+                        else if (Left_Slot5_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Left_Order = Left_Order + " 3rd: " + a[4];
+                        }
 
-                    if (Left_Slot6_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Left_Slot6_Placement.Text = "First";
+                        if (Left_Slot6_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Left_Order = "1st: " + a[5];
+                        }
+                        else if (Left_Slot6_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Left_Order = Left_Order + " 2nd: " + a[5];
+                        }
+                        else if (Left_Slot6_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Left_Order = Left_Order + " 3rd: " + a[5];
+                        }
+                        i++;
                     }
-                    else if (Left_Slot6_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Left_Slot6_Placement.Text = "Second";
-                    }
-                    else if (Left_Slot6_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Left_Slot6_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Left_Slot6_Placement.Text = "Not Battling";
-                    }
-                }
+                Left_Input.Text = Left_Input.Text + Left_Order;
             }
         }
-
+        private string Set_Pronouns(Pokemon mon)
+        {
+            if (mon.Gender == "M")
+                return mon.Species + " (He/Him)";
+            else if (mon.Gender == "F")
+                return mon.Species + " (She/Her)";
+            else
+                return mon.Species + " (They/Them)";
+        }
         private void List_Participants_Right_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var x = sender as ListBox;
             var selection = x.SelectedItem as Party;
             if (selection != null)
             {
-                Right_Slot1_Mon.Text = selection.Slot_1.Species;
-                Right_Slot2_Mon.Text = selection.Slot_2.Species;
-                Right_Slot3_Mon.Text = selection.Slot_3.Species;
-                Right_Slot4_Mon.Text = selection.Slot_4.Species;
-                Right_Slot5_Mon.Text = selection.Slot_5.Species;
-                Right_Slot6_Mon.Text = selection.Slot_6.Species;
+                Right_Input.Text = selection.Name + " - ";
+                Right_Slot1_Mon.Text = Set_Pronouns(selection.Slot_1);
+                Right_Slot1_Moves.Text = string.Join(", ", selection.Slot_1.Moves.Select(kv => kv.Value).ToArray());
 
+                Right_Slot2_Mon.Text = Set_Pronouns(selection.Slot_2);
+                Right_Slot2_Moves.Text = string.Join(", ", selection.Slot_2.Moves.Select(kv => kv.Value).ToArray());
+
+                Right_Slot3_Mon.Text = Set_Pronouns(selection.Slot_3);
+                Right_Slot3_Moves.Text = string.Join(", ", selection.Slot_3.Moves.Select(kv => kv.Value).ToArray());
+
+                Right_Slot4_Mon.Text = Set_Pronouns(selection.Slot_4);
+                Right_Slot4_Moves.Text = string.Join(", ", selection.Slot_4.Moves.Select(kv => kv.Value).ToArray());
+
+                Right_Slot5_Mon.Text = Set_Pronouns(selection.Slot_5);
+                Right_Slot5_Moves.Text = string.Join(", ", selection.Slot_5.Moves.Select(kv => kv.Value).ToArray());
+
+                Right_Slot6_Mon.Text = Set_Pronouns(selection.Slot_6);
+                Right_Slot6_Moves.Text = string.Join(", ", selection.Slot_6.Moves.Select(kv => kv.Value).ToArray());
+
+                string[] a = ["B", "C-Left", "C-Up", "A", "C-Down", "C-Right"];
+                string Right_Order = String.Empty;
+                int i = 0;
                 if (selection.Battle_Set.Count == 3)
-                {
-                    if (Right_Slot1_Mon.Text == selection.Battle_Set[0])
+                    foreach (var m in selection.Battle_Set)
                     {
-                        Right_Slot1_Placement.Text = "First";
-                    }
-                    else if (Right_Slot1_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Right_Slot1_Placement.Text = "Second";
-                    }
-                    else if (Right_Slot1_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Right_Slot1_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Right_Slot1_Placement.Text = "Not Battling";
-                    }
+                        if (Right_Slot1_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Right_Order = "1st: " + a[0];
+                        }
+                        else if (Right_Slot1_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Right_Order = Right_Order + " 2nd: " + a[0];
+                        }
+                        else if (Right_Slot1_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Right_Order = Right_Order + " 3rd: " + a[0];
+                        }
 
-                    if (Right_Slot2_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Right_Slot2_Placement.Text = "First";
-                    }
-                    else if (Right_Slot2_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Right_Slot2_Placement.Text = "Second";
-                    }
-                    else if (Right_Slot2_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Right_Slot2_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Right_Slot2_Placement.Text = "Not Battling";
-                    }
+                        if (Right_Slot2_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Right_Order = "1st: " + a[1];
+                        }
+                        else if (Right_Slot2_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Right_Order = Right_Order + " 2nd: " + a[1];
+                        }
+                        else if (Right_Slot2_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Right_Order = Right_Order + " 3rd: " + a[1];
+                        }
 
-                    if (Right_Slot3_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Right_Slot3_Placement.Text = "First";
-                    }
-                    else if (Right_Slot3_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Right_Slot3_Placement.Text = "Second";
-                    }
-                    else if (Right_Slot3_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Right_Slot3_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Right_Slot3_Placement.Text = "Not Battling";
-                    }
+                        if (Right_Slot3_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Right_Order = "1st: " + a[2];
+                        }
+                        else if (Right_Slot3_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Right_Order = Right_Order + " 2nd: " + a[2];
+                        }
+                        else if (Right_Slot3_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Right_Order = Right_Order + " 3rd: " + a[2];
+                        }
 
-                    if (Right_Slot4_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Right_Slot4_Placement.Text = "First";
-                    }
-                    else if (Right_Slot4_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Right_Slot4_Placement.Text = "Second";
-                    }
-                    else if (Right_Slot4_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Right_Slot4_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Right_Slot4_Placement.Text = "Not Battling";
-                    }
+                        if (Right_Slot4_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Right_Order = "1st: " + a[3];
+                        }
+                        else if (Right_Slot4_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Right_Order = Right_Order + " 2nd: " + a[3];
+                        }
+                        else if (Right_Slot4_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Right_Order = Right_Order + " 3rd: " + a[3];
+                        }
 
-                    if (Right_Slot5_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Right_Slot5_Placement.Text = "First";
-                    }
-                    else if (Right_Slot5_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Right_Slot5_Placement.Text = "Second";
-                    }
-                    else if (Right_Slot5_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Right_Slot5_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Right_Slot5_Placement.Text = "Not Battling";
-                    }
+                        if (Right_Slot5_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Right_Order = "1st: " + a[4];
+                        }
+                        else if (Right_Slot5_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Right_Order = Right_Order + " 2nd: " + a[4];
+                        }
+                        else if (Right_Slot5_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Right_Order = Right_Order + " 3rd: " + a[4];
+                        }
 
-                    if (Right_Slot6_Mon.Text == selection.Battle_Set[0])
-                    {
-                        Right_Slot6_Placement.Text = "First";
+                        if (Right_Slot6_Mon.Text.Split(" ")[0] == m && i == 0)
+                        {
+                            Right_Order = "1st: " + a[5];
+                        }
+                        else if (Right_Slot6_Mon.Text.Split(" ")[0] == m && i == 1)
+                        {
+                            Right_Order = Right_Order + " 2nd: " + a[5];
+                        }
+                        else if (Right_Slot6_Mon.Text.Split(" ")[0] == m && i == 2)
+                        {
+                            Right_Order = Right_Order + " 3rd: " + a[5];
+                        }
+                        i++;
                     }
-                    else if (Right_Slot6_Mon.Text == selection.Battle_Set[1])
-                    {
-                        Right_Slot6_Placement.Text = "Second";
-                    }
-                    else if (Right_Slot6_Mon.Text == selection.Battle_Set[2])
-                    {
-                        Right_Slot6_Placement.Text = "Third";
-                    }
-                    else
-                    {
-                        Right_Slot6_Placement.Text = "Not Battling";
-                    }
-                }
+                Right_Input.Text = Right_Input.Text + Right_Order;
             }
         }
 
@@ -429,6 +426,9 @@ namespace StadiumRentalServer
             var collection = db.GetCollection<BsonDocument>("Inputs");
             collection.DeleteOne(new BsonDocument("Party Name", List_Participants_Left.SelectedItem.ToString()));
             collection.DeleteOne(new BsonDocument("Party Name", List_Participants_Right.SelectedItem.ToString()));
+            
+            Left_Input.Text = String.Empty;
+            Right_Input.Text = String.Empty;
         }
 
         private void Reload_Parties_Click(object sender, RoutedEventArgs e)
@@ -436,6 +436,26 @@ namespace StadiumRentalServer
             Participants.Clear();
             Load_Parties();
             Populate_Lists();
+            Clear_Parties();
+        }
+        private void Clear_Parties()
+        {
+            Left_Input.Text
+                = Left_Slot1_Mon.Text = Left_Slot1_Moves.Text
+                = Left_Slot2_Mon.Text = Left_Slot2_Moves.Text 
+                = Left_Slot3_Mon.Text = Left_Slot3_Moves.Text
+                = Left_Slot4_Mon.Text = Left_Slot4_Moves.Text 
+                = Left_Slot5_Mon.Text = Left_Slot5_Moves.Text 
+                = Left_Slot6_Mon.Text = Left_Slot6_Moves.Text
+                = "";
+            Right_Input.Text
+                = Right_Slot1_Mon.Text = Right_Slot1_Moves.Text
+                = Right_Slot2_Mon.Text = Right_Slot2_Moves.Text 
+                = Right_Slot3_Mon.Text = Right_Slot3_Moves.Text
+                = Right_Slot4_Mon.Text = Right_Slot4_Moves.Text 
+                = Right_Slot5_Mon.Text = Right_Slot5_Moves.Text 
+                = Right_Slot6_Mon.Text = Right_Slot6_Moves.Text
+                = "";
         }
     }
     public class Pokemon
